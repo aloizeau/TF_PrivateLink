@@ -1,13 +1,5 @@
-resource "azurerm_private_dns_zone" "web" {
-  name                = "privatelink.azurewebsites.net"
-  resource_group_name = azurerm_resource_group.rg_network.name
-  tags                = local.tags
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
-  }
-}
+# See here to find the good dns private endpoint:
+# https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-dns#azure-services-dns-zone-configuration
 resource "azurerm_private_dns_zone" "db" {
   name                = "privatelink.database.windows.net"
   resource_group_name = azurerm_resource_group.rg_network.name
@@ -28,8 +20,9 @@ resource "azurerm_private_dns_zone" "blob" {
     ]
   }
 }
-resource "azurerm_private_dns_zone" "cosmosdb" {
-  name                = "privatelink.documents.azure.com"
+
+resource "azurerm_private_dns_zone" "vault" {
+  name                = "privatelink.vaultcore.azure.net"
   resource_group_name = azurerm_resource_group.rg_network.name
   tags                = local.tags
   lifecycle {
@@ -38,8 +31,9 @@ resource "azurerm_private_dns_zone" "cosmosdb" {
     ]
   }
 }
-resource "azurerm_private_dns_zone" "vault" {
-  name                = "privatelink.vaultcore.azure.net"
+
+resource "azurerm_private_dns_zone" "cosmosdb" {
+  name                = "privatelink.documents.azure.com"
   resource_group_name = azurerm_resource_group.rg_network.name
   tags                = local.tags
   lifecycle {

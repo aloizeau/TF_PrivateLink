@@ -2,8 +2,6 @@ provider "azurerm" {
   # More information on the authentication methods supported by
   # the AzureRM Provider can be found here:
   # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
-  tenant_id                  = "df22822e-fca0-4fd3-9266-2c4eb25e5198"
-  subscription_id            = "faf9d896-4d54-433f-bb81-e1cd06d7da7d"
   skip_provider_registration = true
   # More information on the `features` block can be found in the documentation:
   # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs#features

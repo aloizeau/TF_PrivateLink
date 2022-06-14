@@ -24,7 +24,11 @@ resource "azurerm_app_service" "web" {
   https_only          = true
 
   app_settings = {
-    "KEY_VAULT_URI"                                   = replace(azurerm_key_vault.kv.vault_uri, "vault.azure.net", azurerm_private_dns_zone.vault.name)
+    #Force outbound traffic into the VNET
+    "WEBSITE_VNET_ROUTE_ALL" = 1
+    #Key Vault 
+    "KEY_VAULT_URI" = azurerm_key_vault.kv.vault_uri
+    #App Insights settings
     "APPINSIGHTS_INSTRUMENTATIONKEY"                  = azurerm_application_insights.ai.instrumentation_key
     "APPINSIGHTS_PROFILERFEATURE_VERSION"             = "1.0.0"
     "APPINSIGHTS_SNAPSHOTFEATURE_VERSION"             = "1.0.0"
@@ -50,6 +54,25 @@ resource "azurerm_app_service" "web" {
     always_on                 = true
     vnet_route_all_enabled    = true
     http2_enabled             = true
+
+    ip_restriction {
+      name                      = "Global Network"
+      action                    = "Allow"
+      virtual_network_subnet_id = azurerm_subnet.subnet.id
+      priority                  = 300
+    }
+    ip_restriction {
+      name                      = "App Gateway"
+      action                    = "Allow"
+      virtual_network_subnet_id = azurerm_subnet.agw_subnet.id
+      priority                  = 400
+    }
+    ip_restriction {
+      name                      = "Application Network"
+      action                    = "Allow"
+      virtual_network_subnet_id = azurerm_subnet.web.id
+      priority                  = 500
+    }
   }
 
   identity {
@@ -67,7 +90,9 @@ resource "azurerm_app_service" "web" {
   tags = local.tags
   lifecycle {
     ignore_changes = [
-      tags
+      tags,
+      logs,
+      app_settings["WEBSITE_HTTPLOGGING_RETENTION_DAYS"]
     ]
   }
 }

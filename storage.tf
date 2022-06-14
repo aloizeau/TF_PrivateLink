@@ -33,14 +33,13 @@ resource "azurerm_storage_container" "container" {
 }
 
 resource "azurerm_storage_blob" "image" {
-  name                   = "logo.png"
+  name                   = "PrivateLink.png"
   storage_account_name   = azurerm_storage_account.storage.name
   storage_container_name = azurerm_storage_container.container.name
   type                   = "Block"
-  source                 = "./images/logo.png"
+  source                 = "./images/PrivateLink.png"
 }
 
-# Not permit with my personal user account
 resource "azurerm_role_assignment" "web" {
   scope                = azurerm_storage_account.storage.id
   role_definition_name = "Storage Blob Data Reader"

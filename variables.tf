@@ -1,9 +1,9 @@
 variable "environment" {
   description = "(Optional) Environment in which the resources will be created."
   type        = string
-  default     = "sbx"
+  default     = "dev"
   validation {
-    condition     = contains(["sbx", "uat", "ppa", "pr"], var.environment)
-    error_message = "Sorry, but we only accept 'sbx', 'uat', 'ppa' or 'pr' environments."
+    condition     = contains(["dev", "uat", "pp", "pr"], var.environment)
+    error_message = "Sorry, but we only accept 'dev', 'uat', 'pp' or 'pr' environments."
   }
 }

@@ -22,7 +22,7 @@ resource "azurerm_mssql_server" "server" {
   minimum_tls_version           = "1.2"
   administrator_login           = "missadministrat0r"
   administrator_login_password  = azurerm_key_vault_secret.sql.value
-  
+
   azuread_administrator {
     login_username = azurerm_app_service.web.name
     tenant_id      = azurerm_app_service.web.identity.0.tenant_id
