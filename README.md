@@ -4,6 +4,9 @@
 
 This repository contains all terraform scripts used to deploy Azure dedicated items of infrastructure needed by the `Private Link` service.
 
+Here you can see all resources deployed by **IaC**:
+![Architecture design](./images/PrivateLink.png)
+
 ## Getting Started
 
 1. Clone Git repository on your local computer
