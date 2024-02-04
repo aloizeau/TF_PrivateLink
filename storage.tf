@@ -45,3 +45,4 @@ resource "azurerm_role_assignment" "web" {
   role_definition_name = "Storage Blob Data Reader"
   principal_id         = azurerm_app_service.web.identity.0.principal_id
 }
+

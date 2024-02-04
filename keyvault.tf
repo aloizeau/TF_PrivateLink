@@ -285,3 +285,4 @@ resource "time_sleep" "wait_60_seconds" {
   depends_on      = [azurerm_key_vault_certificate.agw]
   create_duration = "60s"
 }
+

@@ -19,3 +19,4 @@ resource "azurerm_resource_group" "rg_network" {
     ]
   }
 }
+

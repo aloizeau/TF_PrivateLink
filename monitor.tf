@@ -458,3 +458,4 @@ resource "azurerm_monitor_diagnostic_setting" "cosmosdb" {
     }
   }
 }
+

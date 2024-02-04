@@ -32,9 +32,10 @@ locals {
   cosmosdb_private_endpoint_name  = join("-", [var.environment, local.loc_prefix, "private-endpoint", local.app_code, "cosmosdb"])
   key_vault_private_endpoint_name = join("-", [var.environment, local.loc_prefix, "private-endpoint", local.app_code, "kv"])
   sql_server_storage              = join("", [var.environment, local.loc_prefix, "storage", "sql", local.app_code])
+ 
   tags = {
     environment = var.environment,
     createdBy   = "terraform",
     appCode     = local.app_code
-  }
+  }  
 }

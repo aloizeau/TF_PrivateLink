@@ -101,3 +101,4 @@ resource "azurerm_app_service_virtual_network_swift_connection" "integration" {
   app_service_id = azurerm_app_service.web.id
   subnet_id      = azurerm_subnet.subnet.id
 }
+

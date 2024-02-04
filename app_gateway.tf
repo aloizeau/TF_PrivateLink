@@ -150,3 +150,4 @@ resource "azurerm_application_gateway" "agw" {
     time_sleep.wait_60_seconds
   ]
 }
+

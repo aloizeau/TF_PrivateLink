@@ -88,3 +88,4 @@ resource "azurerm_virtual_network_peering" "peerWebToVNet" {
   allow_gateway_transit        = true
   allow_virtual_network_access = true
 }
+
